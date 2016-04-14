@@ -1,0 +1,11 @@
+include ':app'
+
+//println "rootProject name is ${rootProject.name}"
+//println "rootProject dir is ${rootProject.projectDir}"
+//
+//println "Project ':app' name is ${project(':app').name}"
+//println "Project ':app' dir is ${project(':app').projectDir}"
+
+// include ':lib' // 配置好你的 lib 模块, 然后取消屏蔽此行脚本
+
+
