@@ -10,6 +10,8 @@ android {
         targetSdkVersion 23
         versionCode 1
         versionName "1.0"
+        buildConfigField "String", "BUILD_TIME", "\"${new Date().time}l\""
+//        long BUILD_TYPE
     }
 
     buildTypes {
