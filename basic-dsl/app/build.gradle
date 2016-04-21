@@ -1,0 +1,68 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 23
+    buildToolsVersion "23.0.2"
+
+    defaultConfig {
+        applicationId "com.meizu.sample.basicdsl"
+        minSdkVersion 22
+        targetSdkVersion 23
+        versionCode 1
+        versionName "1.0"
+
+        buildConfigField "String", "BUILD_TIME_IN_STRING", "\"${new Date().time}l\""
+        buildConfigField "long", "BUILD_TIME", "${new Date().time}l"
+    }
+
+    sourceSets {
+        free {  // 对 src/free/ source set 进行配置 (flavor)
+
+        }
+
+        release { // 对 src/release/ source set 进行配置 (buildType)
+
+        }
+
+        freeFlyme {  // 对 src/freeFlyme/ 额外 source set 进行配置
+
+        }
+    }
+
+    flavorDimensions "channel", "type" // flavor 维度声明
+    productFlavors {
+        free {  // 免费版本
+            dimension "type"   // type 维度的 free flavor
+            applicationIdSuffix ".free"  // 免费版包名后缀 .free
+        }
+
+        utlra {  // 旗舰版本
+            dimension "type"   // type 维度的 ultra flavor
+            applicationIdSuffix ".ultra" // 旗舰版包名后缀 .ultra
+
+        }
+
+        flyme {  // Flyme 渠道
+            dimension "channel" // channel 维度的 flyme flavor
+        }
+
+        tap {  // 应用宝 渠道
+            dimension "channel" // channel 维度的 tap flavor
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled true   // 代码混淆
+            shrinkResources true // 移除没用到的资源和代码
+            proguardFiles getDefaultProguardFile('proguard-android.txt'),
+                    'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    testCompile 'junit:junit:4.12'
+    compile 'com.android.support:appcompat-v7:23.3.0'
+}
