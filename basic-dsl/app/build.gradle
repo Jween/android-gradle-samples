@@ -36,7 +36,7 @@ android {
             applicationIdSuffix ".free"  // 免费版包名后缀 .free
         }
 
-        utlra {  // 旗舰版本
+        ultra {  // 旗舰版本
             dimension "type"   // type 维度的 ultra flavor
             applicationIdSuffix ".ultra" // 旗舰版包名后缀 .ultra
 
@@ -44,19 +44,34 @@ android {
 
         flyme {  // Flyme 渠道
             dimension "channel" // channel 维度的 flyme flavor
+
+            applicationId "com.meizu.sample.basicdsl"
+            minSdkVersion 22
+            targetSdkVersion 23
+            versionCode 1
+            versionName "flyme.1.0"
+
+            buildConfigField "String", "CHANNEL_NAME", "\"channel is flyme\""
         }
 
         tap {  // 应用宝 渠道
             dimension "channel" // channel 维度的 tap flavor
+            buildConfigField "String", "CHANNEL_NAME", "\"channel is tap\""
         }
     }
 
     buildTypes {
+        mtest {
+            buildConfigField "String", "BASE_SERVER", "\"https://xxx.test.meizu.com/\""
+        }
+
         release {
             minifyEnabled true   // 代码混淆
             shrinkResources true // 移除没用到的资源和代码
             proguardFiles getDefaultProguardFile('proguard-android.txt'),
                     'proguard-rules.pro'
+
+            buildConfigField "String", "BASE_SERVER", "\"https://xxx.meizu.com/\""
         }
     }
 }
