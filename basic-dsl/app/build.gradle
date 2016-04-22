@@ -70,7 +70,7 @@ android {
             shrinkResources true // 移除没用到的资源和代码
             proguardFiles getDefaultProguardFile('proguard-android.txt'),
                     'proguard-rules.pro'
-
+            buildConfigField "String", "CHANNEL_NAME", "\"channel is release\""
             buildConfigField "String", "BASE_SERVER", "\"https://xxx.meizu.com/\""
         }
     }
