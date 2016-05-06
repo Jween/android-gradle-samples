@@ -1,0 +1,34 @@
+apply plugin: 'groovy'
+
+dependencies {
+    compile gradleApi()
+    compile localGroovy()
+
+    compile 'com.android.tools.build:gradle:2.1.0'
+}
+
+
+apply plugin: 'maven'
+
+// for local maven publish
+group = 'com.meizu.samples'
+version = '1.0'
+status = 'RELEASE'
+
+artifacts {  // artifact to be uploaded
+    archives jar
+}
+
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            repository(url: uri('../.repo'))
+            pom.version = '1.0'
+            pom.artifactId = 'standalone'
+        }
+    }
+}
+
+
+sourceCompatibility = JavaVersion.VERSION_1_6
+targetCompatibility = JavaVersion.VERSION_1_6

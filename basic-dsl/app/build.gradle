@@ -15,6 +15,21 @@ android {
         buildConfigField "long", "BUILD_TIME", "${new Date().time}l"
     }
 
+    splits {
+        density {
+            enable true
+            exclude "ldpi", "tvdpi", "xxxhdpi"
+            compatibleScreens 'small', 'normal', 'large', 'xlarge'
+        }
+
+        abi {
+            enable true
+            reset()
+            include 'x86', 'armeabi-v7a', 'mips'
+            universalApk true
+        }
+    }
+
     sourceSets {
         free {  // 对 src/free/ source set 进行配置 (flavor)
 
@@ -36,11 +51,11 @@ android {
             applicationIdSuffix ".free"  // 免费版包名后缀 .free
         }
 
-        ultra {  // 旗舰版本
-            dimension "type"   // type 维度的 ultra flavor
-            applicationIdSuffix ".ultra" // 旗舰版包名后缀 .ultra
-
-        }
+//        ultra {  // 旗舰版本
+//            dimension "type"   // type 维度的 ultra flavor
+//            applicationIdSuffix ".ultra" // 旗舰版包名后缀 .ultra
+//
+//        }
 
         flyme {  // Flyme 渠道
             dimension "channel" // channel 维度的 flyme flavor
@@ -54,10 +69,10 @@ android {
             buildConfigField "String", "CHANNEL_NAME", "\"channel is flyme\""
         }
 
-        tap {  // 应用宝 渠道
-            dimension "channel" // channel 维度的 tap flavor
-            buildConfigField "String", "CHANNEL_NAME", "\"channel is tap\""
-        }
+//        tap {  // 应用宝 渠道
+//            dimension "channel" // channel 维度的 tap flavor
+//            buildConfigField "String", "CHANNEL_NAME", "\"channel is tap\""
+//        }
     }
 
     buildTypes {

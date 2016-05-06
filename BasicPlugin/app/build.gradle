@@ -1,0 +1,55 @@
+import com.meizu.samples.HelloGradle
+
+apply plugin: 'com.android.application'
+apply plugin: HelloGradle
+
+greeting {
+    message = 'Hallelujah'
+    greeter = 'Gradle'
+}
+
+greetings {
+    Jack {
+        message "Hallelujah"
+    }
+
+    Jill {
+        message "Hallelujah ", "again"
+    }
+}
+android {
+    compileSdkVersion 23
+    buildToolsVersion "23.0.2"
+
+    defaultConfig {
+        applicationId "com.meizu.samples.basicplugin"
+        minSdkVersion 19
+        targetSdkVersion 23
+        versionCode 1
+        versionName "1.0"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    flavorDimensions "model"
+    productFlavors {
+        m80 {
+            dimension "model"
+        }
+
+        m95 {
+            dimension "model"
+        }
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    testCompile 'junit:junit:4.12'
+    compile 'com.android.support:appcompat-v7:23.3.0'
+}
